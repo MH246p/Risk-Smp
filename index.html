@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk SMP - The Ultimate Futuristic SMP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <img src="header-banner.jpg" alt="Risk SMP Banner" class="banner">
+        <h1>Risk SMP</h1>
+        <p>The Future of Survival Multiplayer Awaits You</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#join">Join the Server</a></li>
+            <li><a href="#why-choose">Why Choose Us?</a></li>
+            <li><a href="#rules">Rules</a></li>
+            <li><a href="#hosting">Our Hosting Power</a></li>
+            <li><a href="#complaints">Complaint Center</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <section id="about">
+        <h2>About Risk SMP</h2>
+        <p>Risk SMP is a **next-gen survival multiplayer** experience. With active staff, an amazing community, and cutting-edge features, we bring you the **best** survival gameplay.</p>
+    </section>
+
+    <section id="join">
+        <h2>🎮 Join Risk SMP 🎮</h2>
+        <p>Play now on our official server! Copy the IP and start your adventure.</p>
+        <div class="server-ip">
+            <input type="text" id="serverIP" value="Risk-Smp.aternos.me:52734" readonly>
+            <button onclick="copyIP()">Copy IP</button>
+        </div>
+        <div id="player-count">
+            <p>🌍 Players Online: <span id="players">Loading...</span></p>
+        </div>
+    </section>
+
+    <section id="why-choose">
+        <h2>🔥 Why Choose Risk SMP? 🔥</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>🛠️ Professional Staff</h3>
+                <p>Our **highly skilled and responsive team** is always available to assist players.</p>
+            </div>
+            <div class="feature">
+                <h3>🎮 Smooth & Lag-Free Gameplay</h3>
+                <p>With **powerful hosting** and optimized servers, expect **zero lag** and a **buttery smooth** experience.</p>
+            </div>
+            <div class="feature">
+                <h3>💎 Best Community</h3>
+                <p>Join a **friendly, competitive, and thriving** community that keeps getting better!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="rules">
+        <h2>🚨 Server Rules 🚨</h2>
+        <ul>
+            <li>❌ No griefing or stealing</li>
+            <li>🤝 Be respectful to all players and staff</li>
+            <li>⚠️ No hacking, exploiting, or using unfair advantages</li>
+            <li>💬 Keep chat friendly & appropriate</li>
+            <li>🛑 Follow all additional in-game rules set by admins</li>
+        </ul>
+    </section>
+
+    <section id="hosting">
+        <h2>⚡ Our Hosting Power ⚡</h2>
+        <p>Risk SMP is hosted on **top-tier dedicated servers**, ensuring 24/7 uptime, **no lag**, and the best multiplayer experience.</p>
+        <div class="hosting-stats">
+            <div class="stat">
+                <h3>🚀 99.9% Uptime</h3>
+                <p>Stay connected anytime, anywhere.</p>
+            </div>
+            <div class="stat">
+                <h3>⚡ High-Performance CPU</h3>
+                <p>Lightning-fast processing for smooth gameplay.</p>
+            </div>
+            <div class="stat">
+                <h3>🔗 DDoS Protection</h3>
+                <p>Play safely with **maximum security**.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="complaints">
+        <h2>❗ Complaint Center ❗</h2>
+        <p>Got an issue? Our staff is here to **help you instantly**. Use the form below to submit your concern.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSc3tMZ4gTbP8ud03sNftLsJ7e4FzAlrBIPYD-Mcl2XRgQkBuA/viewform?usp=header" target="_blank" class="button">Submit a Complaint</a>
+    </section>
+
+    <section id="contact">
+        <h2>📧 Contact Us 📧</h2>
+        <p>Have questions? Send us a message!</p>
+        <form action="https://formspree.io/mfhthegreat@gmail.com" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Risk SMP | **Futuristic Survival Experience**</p>
+    </footer>
+
+    <script>
+        function copyIP() {
+            var copyText = document.getElementById("serverIP");
+            copyText.select();
+            document.execCommand("copy");
+            alert("Server IP copied: " + copyText.value);
+        }
+
+        function updatePlayerCount() {
+            fetch("https://api.mcsrvstat.us/2/play.risksmp.com") 
+                .then(response => response.json())
+                .then(data => {
+                    const playerCount = data.players ? data.players.online : 0;
+                    document.getElementById("players").innerText = playerCount;
+                })
+                .catch(() => {
+                    document.getElementById("players").innerText = "Unavailable";
+                });
+        }
+
+        updatePlayerCount();
+        setInterval(updatePlayerCount, 30000);
+    </script>
+
+</body>
+</html>
